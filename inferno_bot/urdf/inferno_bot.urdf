@@ -525,7 +525,7 @@
     <rightRearJoint>jrbr</rightRearJoint>
     <wheelSeparation>36.45</wheelSeparation>
     <wheelDiameter>13.16</wheelDiameter>
-    <robotBaseFrame>base_footprint</robotBaseFrame>
+    <robotBaseFrame>base_link</robotBaseFrame>
     <torque>20</torque>
     <topicName>cmd_vel</topicName>
     <broadcastTF>True</broadcastTF>
