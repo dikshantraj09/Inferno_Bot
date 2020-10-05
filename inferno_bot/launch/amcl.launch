@@ -1,11 +1,6 @@
 <launch>
+<include file="$(find inferno_bot)/launch/map_provider.launch" />
 
-   <arg name="map_file" default="$(find inferno_bot)/Map/my_map.yaml"/>
-
-   <!-- Run the map server -->
-   <include file="$(find inferno_bot)/launch/map_provider.launch">
-        <arg name="map_file" default="$(arg map_file)"/>
-   </include>
 
    <!--Run Amcl node -->
    <node pkg="amcl" type="amcl" name="amcl">

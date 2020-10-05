@@ -552,7 +552,7 @@
     <publishWheelJointState>true</publishWheelJointState>
 
     <!-- Set to true to swap right and left wheels, defaults to true -->
-    <legacyMode>false</legacyMode>
+    <legacyMode>true</legacyMode>
   </plugin>
 </gazebo>
 </robot>
