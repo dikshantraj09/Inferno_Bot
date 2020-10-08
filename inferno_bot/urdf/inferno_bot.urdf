@@ -22,7 +22,7 @@
     <inertial>
       <origin
         xyz="0 -0.2 -0.5"
-        rpy="1.57079632679 0 0" />
+        rpy="1.57079632679 0  1.57" />
       <mass
         value="19.328" />
       <inertia
@@ -537,7 +537,6 @@
     <odometryFrame>odom</odometryFrame>
 
     <!-- Robot frame to calculate odometry from, defaults to `base_footprint` -->
-    <!--robotBaseFrame></robotBaseFrame-->
     <odometryRate>20.0</odometryRate>
     <!-- Odometry source, 0 for ENCODER, 1 for WORLD, defaults to WORLD -->
     <odometrySource>1</odometrySource>
@@ -552,7 +551,7 @@
     <publishWheelJointState>true</publishWheelJointState>
 
     <!-- Set to true to swap right and left wheels, defaults to true -->
-    <legacyMode>true</legacyMode>
+    <legacyMode>false</legacyMode>
   </plugin>
 </gazebo>
 </robot>

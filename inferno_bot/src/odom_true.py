@@ -34,13 +34,7 @@ def callback(model_states):
     msg.pose.pose = model_pose
     msg.twist.twist = model_twist
     pub_odom.publish(msg)
-    
-    t2.header.stamp = rospy.Time.now()
-    t2.transform.translation = model_pose.position
-    t2.transform.rotation = model_pose.orientation
-    tfm2 = tf.msg.tfMessage([t2])
-    pub_tf.publish(tfm2)
-    rospy.logdebug("Published Tf.")
+   
 
 
 def initialize():
@@ -48,8 +42,7 @@ def initialize():
     rospy.init_node("odom_correcter", anonymous=True)	
     rospy.Subscriber("/gazebo/model_states", ModelStates, callback)
     pub_odom = rospy.Publisher("/odom_true", Odometry, queue_size=1)
-    pub_tf = rospy.Publisher("/tf", tf.msg.tfMessage, queue_size=10, latch=True)
-    
+
     #Transformation for the world frame
     t = TransformStamped()
     t.header.frame_id = "world"
@@ -58,14 +51,14 @@ def initialize():
     t.transform.translation.x = 0.0
     t.transform.translation.y = 0.0
     t.transform.translation.z = 0.0
-    t.transform.rotation.x = 0.0
+    t.transform.rotation.x = .0
     t.transform.rotation.y = 0.0
-    t.transform.rotation.z = 0.0
+    t.transform.rotation.z = -1.57
     t.transform.rotation.w = 1.0
     
     t2 = TransformStamped()
-    t2.header.frame_id = "world"
-    t2.child_frame_id = "base_footprint"
+    t2.header.frame_id = "base_link"
+    t2.child_frame_id = "base_link"
     
     rospy.spin()
 

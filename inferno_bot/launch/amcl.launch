@@ -4,6 +4,7 @@
 
    <!--Run Amcl node -->
    <node pkg="amcl" type="amcl" name="amcl">
+   
         <remap from ="scan" to="/rrbot/laser/scan"/>
         <remap from ="cmd_vel" to="/cmd_vel"/>
         <remap from ="amcl_pose" to="/robot/amcl_pose"/>
