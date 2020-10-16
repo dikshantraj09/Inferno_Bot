@@ -8,6 +8,9 @@ Panels:
         - /Status1
         - /Odometry1
         - /Map1
+        - /Imu1
+        - /Odometry2
+        - /Odometry2/Shape1
       Splitter Ratio: 0.5
     Tree Height: 719
   - Class: rviz/Selection
@@ -260,6 +263,61 @@ Visualization Manager:
       Topic: /particlecloud
       Unreliable: false
       Value: false
+    - Alpha: 0.5
+      Class: rviz_plugin_tutorials/Imu
+      Color: 114; 159; 207
+      Enabled: true
+      History Length: 1
+      Name: Imu
+      Queue Size: 10
+      Topic: /imu
+      Unreliable: false
+      Value: true
+    - Alpha: 0.699999988079071
+      Class: rviz/Map
+      Color Scheme: map
+      Draw Behind: false
+      Enabled: true
+      Name: Map
+      Topic: /move_base/local_costmap/costmap
+      Unreliable: false
+      Use Timestamp: false
+      Value: true
+    - Angle Tolerance: 0.10000000149011612
+      Class: rviz/Odometry
+      Covariance:
+        Orientation:
+          Alpha: 0.5
+          Color: 255; 255; 127
+          Color Style: Unique
+          Frame: Local
+          Offset: 1
+          Scale: 1
+          Value: true
+        Position:
+          Alpha: 0.30000001192092896
+          Color: 204; 51; 204
+          Scale: 1
+          Value: true
+        Value: true
+      Enabled: true
+      Keep: 100
+      Name: Odometry
+      Position Tolerance: 0.10000000149011612
+      Queue Size: 10
+      Shape:
+        Alpha: 1
+        Axes Length: 1
+        Axes Radius: 0.10000000149011612
+        Color: 138; 226; 52
+        Head Length: 0.30000001192092896
+        Head Radius: 0.10000000149011612
+        Shaft Length: 1
+        Shaft Radius: 0.05000000074505806
+        Value: Arrow
+      Topic: /odometry/filtered
+      Unreliable: false
+      Value: true
   Enabled: true
   Global Options:
     Background Color: 48; 48; 48
@@ -288,7 +346,7 @@ Visualization Manager:
   Views:
     Current:
       Class: rviz/Orbit
-      Distance: 15.701834678649902
+      Distance: 2.340484380722046
       Enable Stereo Rendering:
         Stereo Eye Separation: 0.05999999865889549
         Stereo Focal Distance: 1
@@ -304,9 +362,9 @@ Visualization Manager:
       Invert Z Axis: false
       Name: Current View
       Near Clip Distance: 0.009999999776482582
-      Pitch: 0.6903988122940063
+      Pitch: 0.8297973871231079
       Target Frame: <Fixed Frame>
-      Yaw: 1.7853875160217285
+      Yaw: 2.3122010231018066
     Saved: ~
 Window Geometry:
   Displays:

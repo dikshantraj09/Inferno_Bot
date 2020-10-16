@@ -2,8 +2,9 @@
 <!-- This URDF was automatically created by SolidWorks to URDF Exporter! Originally created by Stephen Brawner (brawner@gmail.com) 
      Commit Version: 1.5.1-0-g916b5db  Build Version: 1.5.7152.31018
      For more information, please see http://wiki.ros.org/sw_urdf_exporter -->
-<robot name="inferno_bot">
-  <link name="base_footprint">
+<robot
+  name="inferno_bot">
+    <link name="base_footprint">
    <visual>
       <origin xyz="0 0 0" rpy="0 0 0" />
       <geometry>
@@ -22,7 +23,7 @@
     <inertial>
       <origin
         xyz="0 -0.2 -0.5"
-        rpy="1.57079632679 0  1.57" />
+        rpy="1.57079632679 0 0" />
       <mass
         value="19.328" />
       <inertia
@@ -314,7 +315,7 @@
     type="fixed">
     <origin
       xyz="0.10599 -0.16721 0.29424"
-      rpy="0 3.14 -1.57" />
+      rpy="-1.5708 0 -1.5708" />
     <parent
       link="base_link" />
     <child
@@ -481,75 +482,33 @@
     <axis
       xyz="0 0 0" />
   </joint>
-    <gazebo reference="lidar">
-    <sensor type="ray" name="head_hokuyo_sensor">
-      <pose> 0 0 0 0 0 0 </pose>
-      <visualize>true</visualize>
-      <update_rate>40</update_rate>
-      <ray>
-        <scan>
-          <horizontal>
-            <samples>720</samples>
-            <resolution>1</resolution>
-            <min_angle>-1.57</min_angle>
-            <max_angle>1.57</max_angle>
-          </horizontal>
-        </scan>
-        <range>
-          <min>0.10</min>
-          <max>30.0</max>
-          <resolution>0.01</resolution>
-        </range>
-        <noise>
-          <type>gaussian</type>
-          <!-- Noise parameters based on published spec for Hokuyo laser
-               achieving "+-30mm" accuracy at range < 10m.  A mean of 0.0m and
-               stddev of 0.01m will put 99.7% of samples within 0.03m of the true
-               reading. -->
-          <mean>0.0</mean>
-          <stddev>0.01</stddev>
-        </noise>
-      </ray>
-      <plugin name="gazebo_ros_head_hokuyo_controller" filename="libgazebo_ros_laser.so">
-        <topicName>/rrbot/laser/scan</topicName>
-        <frameName>lidar</frameName> 
-      </plugin>
-    </sensor>
-  </gazebo>
-  <gazebo reference="imu">
-    <gravity>true</gravity>
-    <sensor name="imu_sensor" type="imu">
-      <always_on>true</always_on>
-      <update_rate>100</update_rate>
-      <visualize>true</visualize>
-      <topic>__default_topic__</topic>
-      <plugin filename="libgazebo_ros_imu_sensor.so" name="imu_plugin">
-        <topicName>imu</topicName>
-        <bodyName>imu</bodyName>
-        <updateRateHZ>10.0</updateRateHZ>
-        <gaussianNoise>0.0</gaussianNoise>
-        <xyzOffset>0 0 0</xyzOffset>
-        <rpyOffset>0 0 0</rpyOffset>
-        <frameName>base_link</frameName>
-        <initialOrientationAsReference>false</initialOrientationAsReference>
-      </plugin>
-      <pose>0 0 0 0 0 0</pose>
-    </sensor>
-  </gazebo>
-  <gazebo>
-  <plugin name="skid_steer_drive_controller" filename="libgazebo_ros_skid_steer_drive.so">
-    <updateRate>100.0</updateRate>
-    <leftFrontJoint>jlfr</leftFrontJoint>
-    <rightFrontJoint>jrfr</rightFrontJoint>
-    <leftRearJoint>jlbr</leftRearJoint>
-    <rightRearJoint>jrbr</rightRearJoint>
+<gazebo>
+  <plugin name="differential_drive_controller" filename="libgazebo_ros_diff_drive.so">
+
+    <!-- Plugin update rate in Hz -->
+    <updateRate>20</updateRate>
+
+    <!-- Name of left joint, defaults to `left_joint` -->
+    <leftJoint>jlfr</leftJoint>
+
+    <!-- Name of right joint, defaults to `right_joint` -->
+    <rightJoint>jrfr</rightJoint>
+
+    <!-- The distance from the center of one wheel to the other, in meters, defaults to 0.34 m -->
     <wheelSeparation>0.3645</wheelSeparation>
+
+    <!-- Diameter of the wheels, in meters, defaults to 0.15 m -->
     <wheelDiameter>0.1316</wheelDiameter>
-    <robotBaseFrame>base_link</robotBaseFrame>
-    <torque>20</torque>
-    <topicName>cmd_vel</topicName>
-    <broadcastTF>True</broadcastTF>
-    
+
+    <!-- Wheel acceleration, in rad/s^2, defaults to 0.0 rad/s^2 -->
+    <wheelAcceleration>1.0</wheelAcceleration>
+
+    <!-- Maximum torque which the wheels can produce, in Nm, defaults to 5 Nm -->
+    <wheelTorque>20</wheelTorque>
+
+    <!-- Topic to receive geometry_msgs/Twist message commands, defaults to `cmd_vel` -->
+    <commandTopic>cmd_vel</commandTopic>
+
     <!-- Topic to publish nav_msgs/Odometry messages, defaults to `odom` -->
     <odometryTopic>odom</odometryTopic>
 
@@ -557,6 +516,7 @@
     <odometryFrame>odom</odometryFrame>
 
     <!-- Robot frame to calculate odometry from, defaults to `base_footprint` -->
+    <robotBaseFrame>base_link</robotBaseFrame>
 
     <!-- Odometry source, 0 for ENCODER, 1 for WORLD, defaults to WORLD -->
     <odometrySource>1</odometrySource>
