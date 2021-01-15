@@ -21,10 +21,6 @@
        <param name="transform_time_offset" value="0.0"/>
 
        <param name="odom0" value="/odom"/>
-ROS_MASTER_URI=http://localhost:11311
-
-process[joint_state_publisher-1]: started with pid [30504]
-process[robot_state_publisher-2]: started with 
 
        <param name="odom0_differential" value="false" />
 

@@ -19,6 +19,13 @@
     args="-file $(find inferno_bot)/Map/model.sdf -sdf -model map"
     output="screen" />
   <node
+    name="Ar_tag"
+    pkg="gazebo_ros"
+    type="spawn_model"
+    args="-file $(find inferno_bot)/urdf/ar_tag.urdf -urdf -model artag"
+    output="screen" />
+
+  <node
     name="fake_joint_calibration"
     pkg="rostopic"
     type="rostopic"
